@@ -5,8 +5,7 @@
     "ng": "ng",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build": "nest build && cp package.json dist/",
-    "postbuild": "cd dist && zip ../dist.zip -r * .[^.]*",
+    "build": "ng build",
     "start": "node main.js"
   },
   "private": true,
