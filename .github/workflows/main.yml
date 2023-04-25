@@ -26,6 +26,7 @@ jobs:
         cd  dist/eshop-app
         zip release.zip ./* -r
         ls
+        mv release.zip /home/runner/work/Final-frontend-angular/Final-frontend-angular
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
