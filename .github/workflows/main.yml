@@ -18,12 +18,15 @@ jobs:
     - name: Install dependencies
       run: |
         npm install
+        npm i angular-responsive-carousel --force
+        npm install eslint
+        npm install webpack
         npm run build
     - name: Run ls command
       run: |
         ls D:\a\Final-frontend-angular\Final-frontend-angular\dist\eshop-app\
     - name: Zip artifact for deployment
-      run: Compress-Archive -Path D:\a\Final-frontend-angular\Final-frontend-angular\dist\eshop-app\* -Destination eshop-app.zip
+      run: Compress-Archive -Path D:\a\Final-frontend-angular\Final-frontend-angular\dist\* -Destination eshop-app.zip
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
