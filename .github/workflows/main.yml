@@ -17,8 +17,10 @@ jobs:
         ls
     - name: npm install and npm run build
       run: |
+          npm install
           npm i
-          npm run build:prod
+          npm i angular-responsive-carousel --force
+          npm run build
     - name: Run ls command
       run: |
         ls D:\a\Final-frontend-angular\Final-frontend-angular\dist\eshop-app\
