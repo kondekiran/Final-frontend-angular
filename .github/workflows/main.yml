@@ -17,6 +17,8 @@ jobs:
         ls
     - name: npm install and npm run build
       run: |
+          npm install -g npm-check-updates
+          ncu -u
           npm install --legacy-peer-deps --force && npm run build
     - name: Run ls command
       run: |
