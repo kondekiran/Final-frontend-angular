@@ -22,11 +22,11 @@ jobs:
       run: |
         ls 
     - name: Zip artifact for deployment
-      run: Compress-Archive -Path D:\Final-frontend\dist\* -Destination Release.zip
+      run: zip artifact.zip dist/*
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
-        path: Release.zip
+        path: artifact.zip
    
  
 
