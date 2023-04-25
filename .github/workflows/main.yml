@@ -17,10 +17,10 @@ jobs:
         ls
     - name: npm install and npm run build
       run: |
+          npm cache clean --force
           npm install -g npm-check-updates
           ncu -u
           rm -rf node_modules
-          npm cache clean --force
           npm i
           npm install --legacy-peer-deps --force && npm run build
     - name: Run ls command
