@@ -26,11 +26,11 @@ jobs:
       run: |
         ls D:\a\Final-frontend-angular\Final-frontend-angular\dist\eshop-app\
     - name: Zip artifact for deployment
-      run: Compress-Archive -Path D:\a\Final-frontend-angular\Final-frontend-angular\dist\eshop-app\* -Destination dist.zip
+      run: Compress-Archive -Path D:\a\Final-frontend-angular\Final-frontend-angular\dist\eshop-app\* -Destination eshop-app.zip
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
-        path: dist.zip
+        path: eshop-app.zip
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v1
       with:
@@ -40,7 +40,7 @@ jobs:
           environment_name: Eshopfrontend-env
           version_label: ${{ github.run_id }}
           region: us-east-1
-          deployment_package: dist.zip
+          deployment_package: eshop-app.zip
         
 
 
