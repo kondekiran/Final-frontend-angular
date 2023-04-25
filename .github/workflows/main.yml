@@ -23,7 +23,7 @@ jobs:
         ls 
     - name: Zip artifact for deployment
       run: |
-        cp /home/runner/work/Final-frontend-angular/Final-frontend-angular/package.json /home/runner/work/Final-frontend-angular/Final-frontend-angular/dist/eshop-app
+       # cp /home/runner/work/Final-frontend-angular/Final-frontend-angular/package.json /home/runner/work/Final-frontend-angular/Final-frontend-angular/dist/eshop-app
         cd  dist/eshop-app
         zip release.zip ./* -r
         ls
