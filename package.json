@@ -6,7 +6,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build": "ng build",
-    "start": "node main.js"
+    "start": "node server.js"
   },
   "private": true,
   "dependencies": {
