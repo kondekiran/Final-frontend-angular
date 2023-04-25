@@ -23,21 +23,12 @@ jobs:
         ls 
         pwd
     - name: Zip artifact for deployment
-      run: zip release.zip dist/eshop-app/* -r
+      run: zip release.zip /home/runner/work/Final-frontend-angular/Final-frontend-angular/dist/eshop-app/* -r
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
         path: release.zip
-    - name: Deploy to EB
-      uses: einaregilsson/beanstalk-deploy@v1
-      with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: Eshopfrontend
-          environment_name: Eshopfrontend-env
-          version_label: ${{ github.run_id }}
-          region: us-east-1
-          deployment_package: release.zip
+    
         
 
 
