@@ -6,7 +6,7 @@ on:
 #ab
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout source code
       uses: actions/checkout@v3
@@ -14,23 +14,20 @@ jobs:
         node-version: 16.x
     - name: Run ls command
       run: |
-        dir 
-    - name: Install dependencies
+        ls
+    - name: npm install and npm run build
       run: |
-        npm install
-        npm i angular-responsive-carousel --force
-        npm install eslint
-        npm install webpack
-        npm run build
+          npm i
+          npm run build:prod
     - name: Run ls command
       run: |
         ls D:\a\Final-frontend-angular\Final-frontend-angular\dist\eshop-app\
     - name: Zip artifact for deployment
-      run: Compress-Archive -Path D:\a\Final-frontend-angular\Final-frontend-angular\dist\* -Destination eshop-app.zip
+      run: zip release.zip .dist/eshop-app/* -r
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
-        path: eshop-app.zip
+        path: release.zip
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v1
       with:
@@ -40,7 +37,7 @@ jobs:
           environment_name: Eshopfrontend-env
           version_label: ${{ github.run_id }}
           region: us-east-1
-          deployment_package: eshop-app.zip
+          deployment_package: release.zip
         
 
 
