@@ -20,7 +20,7 @@ jobs:
           npm install --legacy-peer-deps --force && npm run build
     - name: Run ls command
       run: |
-        ls D:\a\Final-frontend
+        ls D:\Final-frontend
     - name: Zip artifact for deployment
       run: Compress-Archive -Path D:\Final-frontend\* -Destination Release.zip
     - name: Upload artifact for deployment job
