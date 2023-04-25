@@ -22,6 +22,13 @@ jobs:
         npm install eslint
         npm install webpack
         npm run build
-    - name: ls
-      run: ls
+    - name: Run ls command
+      run: |
+        ls D:\a\Final-frontend-angular\Final-frontend-angular\dist\
+    - name: Zip artifact for deployment
+      run: Compress-Archive -Path D:\a\Final-frontend-angular\Final-frontend-angular\dist\* -Destination Release.zip
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v2
+      with:
+        path: dist.zip
 
