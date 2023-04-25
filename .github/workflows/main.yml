@@ -22,7 +22,7 @@ jobs:
       run: |
         ls 
         pwd
-    - name: Zip artifact for deployment
+    - name: Zip artifact for deployment #zip
       run: |
          cd /dist/eshop-app
          ls
