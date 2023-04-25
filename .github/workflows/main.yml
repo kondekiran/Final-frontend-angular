@@ -24,8 +24,9 @@ jobs:
         pwd
     - name: Zip artifact for deployment
       run: |
-        cd dist/eshop-app 
-        zip release.zip ./* -r
+        mkdir final
+        cp dist/eshop-app final/  -R
+        zip release.zip final/* -r
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
