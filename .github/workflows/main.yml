@@ -26,7 +26,7 @@ jobs:
       run: |
          cd /dist/eshop-app
          ls
-         zip -r release.zip 
+    - run: Compress-Archive -/dist/eshop-app/* release.zip.zip
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
