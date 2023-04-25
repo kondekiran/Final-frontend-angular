@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    // "start": "ng serve",
+    // "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build": "nest build && cp package.json dist/",
+    "postbuild": "cd dist && zip ../dist.zip -r * .[^.]*",
+    "start": "node main.js"
   },
   "private": true,
   "dependencies": {
