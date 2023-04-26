@@ -10,7 +10,7 @@ jobs:
    runs-on: ubuntu-latest
    strategy:
      matrix:
-       node-version: [10.x]
+       node-version: [15.x]
    steps:
    - uses: actions/checkout@v2
    - name: Use Node.js ${{ matrix.node-version }}
@@ -18,8 +18,8 @@ jobs:
 
      with:
        node-version: ${{ matrix.node-version }}
-   - run: npm install
-   - run: npm build
+     run: npm install
+     run: npm build
           npm cache clean --force
           npm install -g npm-check-updates
           ncu -u
