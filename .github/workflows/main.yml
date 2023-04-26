@@ -25,6 +25,8 @@ jobs:
         ls 
     - name: Zip artifact for deployment
       run: |
+        cp node_modules dist/
+        cp Procfile dist/
         cd  dist/eshop-app
         zip release.zip ./* -r
         ls
