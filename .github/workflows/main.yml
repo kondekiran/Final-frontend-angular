@@ -13,7 +13,7 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v3
       with:
-        node-version: 17.x
+        node-version: 16.x
     - name: Run ls command
       run: |
         ls
@@ -23,12 +23,8 @@ jobs:
     - name: Run ls command
       run: |
         ls 
-    - name: Copy Procfile
-      run: |
-        cp Procfile dist/eshop-app
     - name: Zip artifact for deployment
       run: |
-        cp -r node_modules dist/
         cd  dist/eshop-app
         zip -r release.zip ./*
         ls
@@ -36,7 +32,18 @@ jobs:
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
-        path: release.zip
+        path: release.zip 
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v1
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: Eshopfrontend
+        environment_name: Eshopfrontend-env
+        version_label: ${{ github.run_id }}
+        region: us-east-1
+        deployment_package: release.zip
+
         
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v1
