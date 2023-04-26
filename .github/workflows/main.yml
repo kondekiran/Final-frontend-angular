@@ -1,46 +1,49 @@
 name: Deploy master
 on:
-  push:
-    branches:
-      - master
-#ab
+ push:
+   branches: [ master ]
+ pull_request:
+   branches: [ master ]
+ 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout source code
-      uses: actions/checkout@v3
-      with:
-        node-version: 16.x
-    - name: Run ls command
-      run: |
-        ls
-    - name: npm install and npm run build
-      run: |
+ build:
+   runs-on: ubuntu-latest
+   strategy:
+     matrix:
+       node-version: [10.x]
+   steps:
+   - uses: actions/checkout@v2
+   - name: Use Node.js ${{ matrix.node-version }}
+     uses: actions/setup-node@v1
+
+     with:
+       node-version: ${{ matrix.node-version }}
+   - run: npm install
+   - run: npm build
           npm cache clean --force
           npm install -g npm-check-updates
           ncu -u
           rm -rf node_modules
           npm i
           npm install --legacy-peer-deps --force && npm run build
-    - name: Run ls command
-      run: |
-        ls 
-    - name: Zip artifact for deployment
-      run: |
+   - name: Run ls command
+   - run: |
+        ls   
+   - name: Zip artifact for deployment
+     run: |
         cp /home/runner/work/Final-frontend-angular/Final-frontend-angular/package.json /home/runner/work/Final-frontend-angular/Final-frontend-angular/dist/eshop-app
         cd  dist/eshop-app
         zip release.zip ./* -r
         ls
         mv release.zip /home/runner/work/Final-frontend-angular/Final-frontend-angular
         
-    - name: Upload artifact for deployment job
-      uses: actions/upload-artifact@v2
-      with:
+   - name: Upload artifact for deployment job
+     uses: actions/upload-artifact@v2
+     with:
         path: release.zip
-    - name: Deploy to EB
-      uses: einaregilsson/beanstalk-deploy@v1
-      with:
+   - name: Deploy to EB
+     uses: einaregilsson/beanstalk-deploy@v1
+     with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: Eshopfrontend
