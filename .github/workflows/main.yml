@@ -25,9 +25,6 @@ jobs:
         npm install
         npm cache clean --force
         npm install -g npm-check-updates
-        ncu -u
-        rm -rf node_modules
-        npm i
         npm install --legacy-peer-deps --force
         npm run build
         
