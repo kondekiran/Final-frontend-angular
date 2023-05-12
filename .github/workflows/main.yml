@@ -35,15 +35,14 @@ jobs:
         name: release
         path: release.zip 
     - name: Deploy to EB
-      uses: softprops/action-gh-release@v1
+      uses: einaregilsson/beanstalk-deploy@v1
       with:
         files: /home/runner/work/Final-frontend-angular/Final-frontend-angular/release.zip
         args: --env-file=env.txt
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: us-east-1
+        AWS_REGION: ${{ vars.AWS_REGION_ACTIVITY }}
         EB_APPLICATION_NAME: ${{ vars.FRONTEND_EB_APP_NAME }}
         EB_ENVIRONMENT_NAME: ${{ vars.FRONTND_EB_ENV_NAME }}
 
