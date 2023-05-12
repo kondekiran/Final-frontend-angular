@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-   build:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source code
@@ -19,27 +19,27 @@ jobs:
         ls
     - name: npm install and npm run build
       run: |
-          npm install --legacy-peer-deps --force && npm run build
+        npm install --legacy-peer-deps --force && npm run build
     - name: Run ls command
       run: |
         ls 
     - name: Zip artifact for deployment
       run: |
-        cd  dist/eshop-app
+        cd dist/eshop-app
         zip -r release.zip ./*
         ls
-        mv release.zip /home/runner/work/Final-frontend-angular/Final-frontend-angular
+        mv release.zip /home/runner/work/Final-frontend-angular/Final-frontend-angular/
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
+        name: release
         path: release.zip 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v1
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: ${{ vars.FRONTEND_EB_APP_NAME }}
-        environment_name: ${{ vars.FRONTND_EB_ENV_NAME }}
-        version_label: ${{github.ref_name }}-${{github.ref_num}}
-        region: ${{ vars.AWS_REGION }}
+        application_name: ${{ secrets.FRONTEND_EB_APP_NAME }}
+        environment_name: ${{ secrets.FRONTND_EB_ENV_NAME }}
+        version_label: ${{ github.ref }}-${{ github.run_number }}
         deployment_package: release.zip
