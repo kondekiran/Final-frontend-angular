@@ -43,3 +43,5 @@ jobs:
         environment_name: ${{ secrets.FRONTND_EB_ENV_NAME }}
         version_label: ${{ github.ref }}-${{ github.run_number }}
         deployment_package: release.zip
+      env:
+        AWS_REGION: us-east-1
