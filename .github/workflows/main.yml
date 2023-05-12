@@ -38,8 +38,8 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: Eshopfrontend
-        environment_name: Eshopfrontend-env
-        version_label: ${{ github.ref_name }}-${{github.ref_num}}
-        region: us-east-1
+        application_name: ${{vars.FRONTEND_EB_APP_NAME}}
+        environment_name: ${{vars.FRONTND_EB_ENV_NAME}}
+        version_label: ${{github.ref_name }}-${{github.ref_num}}
+        region: ${{vars.AWS_REGION}}
         deployment_package: release.zip
