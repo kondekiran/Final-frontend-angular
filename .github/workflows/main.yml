@@ -25,8 +25,8 @@ jobs:
         ls 
     - name: Zip artifact for deployment
       run: |
+        cp Procfile package.json dist/eshop-app
         cd dist/eshop-app
         zip -r release.zip ./*
-        ls
         mv release.zip /home/runner/work/Final-frontend-angular/Final-frontend-angular/
         ls
