@@ -29,4 +29,4 @@ jobs:
         cd dist/eshop-app
         zip -r release.zip ./*
         mv release.zip /home/runner/work/Final-frontend-angular/Final-frontend-angular/
-        ls
+        ls /home/runner/work/Final-frontend-angular/Final-frontend-angular/
