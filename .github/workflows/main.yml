@@ -1,4 +1,4 @@
-#deploy
+#deploy extened
 name: Deploy master
 
 on:
