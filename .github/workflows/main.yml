@@ -24,9 +24,8 @@ jobs:
       - name: Read secrets from AWS Secrets Manager into environment variables
         uses: abhilash1in/aws-secrets-manager-action@v2.1.0
         with:
-         secrets: |
-           prom-prod
-           parse-json: true
+         secrets: promProd
+         parse-json: true
       - name: Install dependencies and build
         run: |
           npm install --legacy-peer-deps --force
