@@ -1,6 +1,5 @@
 #deploy extened new
 name: Deploy master
-
 on:
   push:
     branches: [ master ]
