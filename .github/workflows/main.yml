@@ -21,15 +21,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-
       - name: Get secrets by name and by ARN
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
           secret-ids: |
-            prod_prom_secrets
-          aws-region: us-east-1
-          parse-json-secrets: true
-
+           prome-prod-secrets
+           parse-json-secrets: true
       - name: Install dependencies and build
         run: |
           npm install --legacy-peer-deps --force
