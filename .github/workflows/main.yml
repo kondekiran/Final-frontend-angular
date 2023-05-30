@@ -17,6 +17,21 @@ jobs:
         node-version: 18.x
     - name: Run ls command
       run: |
+        ls   
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+       aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+       aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+       aws-region: ${{ vars.AWS_REGION_ACTIVE }}
+    - name: Get secrets by name and by ARN
+      uses: aws-actions/aws-secretsmanager-get-secrets@v1
+      with:
+       secret-ids: |
+        prod_prom_secrets
+        parse-json-secrets: true
+    - name: Run ls command
+      run: |
         ls
     - name: npm install and npm run build
       run: |
