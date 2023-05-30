@@ -1,11 +1,10 @@
-#deploy extened new
+#deeploy extened new
 name: Deploy master
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
